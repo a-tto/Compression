@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define PIXELMAX 255
+
 typedef unsigned char BYTE;
 
 typedef struct {
@@ -102,4 +104,45 @@ int  getPixel(ImageData *img, int x, int y, Pixel *pixel){
     }
 
     return return_value;
+}
+
+int correctPixelValue(int value, int max){
+    if(value < 0)
+        return 0;
+    else if(value >= max)
+        return max;
+    else
+        return value;
+}
+
+int setPixel(ImageData *image, int x, int y, Pixel *pixel){
+    int address;
+    int depth;
+    BYTE *pixels;
+
+    if(image == NULL)
+        return -1;
+    if(image->pixels == NULL)
+        return -1;
+
+    if(x < 0 || x >= image->width || y < 0 || y >= image->height)
+        return 0;
+
+    depth = image->depth;
+    address = x + y*image->width;
+    pixels = image->pixels;
+    if(depth == 8){
+        pixels[address] = correctPixelValue(pixel->r, PIXELMAX);
+    }else if(depth == 24){
+        pixels += (address*3);
+        (*pixels) = correctPixelValue(pixel->r, PIXELMAX);
+        pixels++;
+        (*pixels) = correctPixelValue(pixel->g, PIXELMAX);
+        pixels++;
+        (*pixels) = correctPixelValue(pixel->b, PIXELMAX);
+    } else {
+        return -1;
+    }
+
+    return 1;
 }
