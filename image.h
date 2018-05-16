@@ -26,6 +26,10 @@ typedef struct {
     int b;
 }Pixel;
 
+typedef struct {
+    int x,y;
+    int buffer1,buffer2,buffer3;
+}Coordinate;
 
 ImageData *createImage(int width, int height, int depth);
 
