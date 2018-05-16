@@ -3,22 +3,10 @@
 //
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "image.h"
 #define PIXELMAX 255
 
-typedef unsigned char BYTE;
 
-typedef struct {
-    int width,height;
-    int depth;
-    void *pixels;
-} ImageData;
-
-typedef struct {
-    int r;
-    int g;
-    int b;
-}Pixel;
 
 ImageData *createImage(int width, int height, int depth){
     ImageData *new_image;
