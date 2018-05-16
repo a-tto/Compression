@@ -1,7 +1,15 @@
 #include <stdio.h>
+#include "image.h"
 
 
 int main() {
-    printf("Hello, CLion!\n");
+    FILE *fp;
+
+    ImageData *image;
+
+    readBMPfile("/Users/akyo/compress/mono/LENNA.bmp",&image);
+
+    writeBMPfile("/Users/akyo/compress/out2.bmp",image);
+
     return 0;
 }
