@@ -6,7 +6,42 @@
 #include "image.h"
 #define PIXELMAX 255
 
+int initCoordinateData(Coordinate *coordinate){
+    coordinate->x = 0;
+    coordinate->y = 0;
 
+    coordinate->buffer1 = 0;
+}
+
+int getNextCoordinate(ImageData *image,Coordinate *coordinate)
+{
+    int next_x,next_y;
+
+    int width,height;
+
+    width=image->width;
+    height=image->height;
+
+    if(coordinate->buffer1==0) {	// 最初の１回目だけ特別扱いで、何もしない
+        coordinate->buffer1=1;
+        return 1;
+    }
+    else {
+        next_x=coordinate->x;
+        next_y=coordinate->y;
+        next_x++;
+        if(next_x>=width) {
+            next_x=0;
+            next_y++;
+        }
+        if(next_y>=height) {
+            return 0;
+        }
+        coordinate->x=next_x;
+        coordinate->y=next_y;
+        return 1;
+    }
+}
 
 ImageData *createImage(int width, int height, int depth){
     ImageData *new_image;

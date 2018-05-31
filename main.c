@@ -3,13 +3,23 @@
 
 
 int main() {
-    FILE *fp;
-
     ImageData *image;
+    Coordinate *coordinate;
+    int x,y;
+    int width,height;
 
-    readBMPfile("/Users/akyo/compress/mono/LENNA.bmp",&image);
+    image = createImage(256,256,24);
 
-    writeBMPfile("/Users/akyo/compress/out2.bmp",image);
+    width = image->width;
+    height = image->height;
+
+    for(y=0; y < height; y++){
+        for(x=0; x < width; x++){
+            //画像処理
+        }
+    }
+
+    disposeImage(image);
 
     return 0;
 }

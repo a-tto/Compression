@@ -13,6 +13,16 @@
 #define PIXELMAX 255
 
 typedef unsigned char BYTE;
+typedef unsigned long       DWORD;
+typedef int                 BOOL;
+typedef unsigned short      WORD;
+typedef unsigned long       LONG;
+
+#define BI_RGB        0L
+#define BI_RLE8       1L
+#define BI_RLE4       2L
+#define BI_BITFIELDS  3L
+
 
 typedef struct {
     int width,height;
@@ -39,5 +49,7 @@ int writeBMPfile(char *fname,ImageData *img);
 int getPixel(ImageData *img, int x, int y, Pixel *pixel);
 int correctPixelValue(int value, int max);
 int setPixel(ImageData *img, int x, int y, Pixel *pixel);
-
+int fwriteDWORD(DWORD val, FILE *fp);
+int initCoordinateData(Coordinate *coordinate);
+int getNextCoordinate(ImageData *image, Coordinate *coodinate);
 #endif //COMPRESSION_IMAGE_H
