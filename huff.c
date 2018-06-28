@@ -19,7 +19,7 @@ typedef unsigned char byte;
 
 void encodeImage(FILE *fp, ImageData *image);
 
-int manin(int argc, char *argv[]){
+int main(int argc, char *argv[]){
     FILE *fp_o;
     ImageData *image;
 
